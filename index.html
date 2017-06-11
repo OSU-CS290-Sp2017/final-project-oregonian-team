@@ -1,1 +1,188 @@
-<dfs>
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <title>Corvallisian Life</title>
+
+    <!-- This is a stylesheet that includes the font you should use -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700" rel="stylesheet">
+
+    <!-- This is a 3rd-party stylesheet for Font Awesome: http://fontawesome.io/ -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="screen">
+
+    <link rel="stylesheet" href="style.css" media="screen">
+
+  </head>
+
+  <body>
+
+    <header>
+
+      <!-- The <i>  <i class="fa fa-hand-lizard-o"> tag below includes the bullhorn icon from Font Awesome -->   
+      <a href="#"><h1 class="site-title"></i>Corvallisian Life</h1></a>
+
+      <nav class="navbar">
+        <ul class="navlist">
+          <li class="navitem navlink active"><a href="#">Home</a></li>
+          <li class="navitem navlink"><a href="#">Entertainment</a></li>
+          <li class="navitem navlink"><a href="#">Sightseeing</a></li>
+          <li class="navitem navbar-search">
+            <input type="text" id="navbar-search-input" placeholder="Search...">
+            <button type="button" id="navbar-search-button"><i class="fa fa-search"></i></button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="item-container">
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Sitting in web dev... This class is so awesome!
+          </p>
+          <p class="item-attribution">
+            <a href="#">CSMajor2017</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Anyone watch the baseball game last night?  The Beavs are still in 1st place!
+          </p>
+          <p class="item-attribution">
+            <a href="#">BeaverBeliever</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            A body in motion must remain in motion unless acted upon by an outside force.
+          </p>
+          <p class="item-attribution">
+            <a href="#">NewtonRulez</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Huh?
+          </p>
+          <p class="item-attribution">
+            <a href="#">ConfusedItermer</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Why did the calf cross the road?
+          </p>
+          <p class="item-attribution">
+            <a href="#">Setup</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            To get to the udder side!
+          </p>
+          <p class="item-attribution">
+            <a href="#">Punchline</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Any questions about flexboxes?
+          </p>
+          <p class="item-attribution">
+            <a href="#">Hess</a>
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="item-icon">
+          <i class="fa fa-heart"></i>
+        </div>
+        <div class="item-content">
+          <p class="item-text">
+            Friendly reminder: your taxes were due yesterday.
+          </p>
+          <p class="item-attribution">
+            <a href="#">TheIRS</a>
+          </p>
+        </div>
+      </article>
+
+    </main>
+
+    <button type="button" id="create-item-button"><i class="fa fa-car"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-item-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create a Item</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="item-input-element">
+            <label for="item-text-input">Item text</label>
+            <textarea id="item-text-input"></textarea>
+          </div>
+          <div class="item-input-element">
+            <label for="item-attribution-input">Author</label>
+            <input type="text" id="item-attribution-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-cancel-button">Cancel</button>
+          <button type="button" class="modal-accept-button">Create Item</button>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+
+  <script src="/index.js" charset="utf-8"></script>
+
+</html>
