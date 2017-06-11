@@ -2,7 +2,7 @@ var modal_backdrop = document.getElementById('modal-backdrop');
 //var modal_backdrop = document.getElementsByClassName('hidden');???
 var create_item_modal = document.getElementById('create-item-modal');
 var text_input = document.getElementById('item-text-input');
-var attribution_input = document.getElementById('item-attribution-input');
+var location_input = document.getElementById('item-location-input');
 var item_container = document.querySelector('.item-container');
 var item = document.querySelectorAll('.item');
 
@@ -16,7 +16,7 @@ create_itemer.addEventListener('click', function () {
 var close_itemer = document.querySelector('.modal-close-button');
 close_itemer.addEventListener('click', function () {
   text_input.value = "";
-  attribution_input.value = "";
+  location_input.value = "";
   console.log("The input was cleared since closed");
   modal_backdrop.style.display="none";
   create_item__modal.style.display="none";
@@ -26,7 +26,7 @@ close_itemer.addEventListener('click', function () {
 var cancel_itemer = document.querySelector('.modal-cancel-button');
 cancel_itemer.addEventListener('click', function () {
   text_input.value = "";
-  attribution_input.value = "";
+  location_input.value = "";
   console.log("The input was cleared since canceled");
   modal_backdrop.style.display="none";
   create_item__modal.style.display="none";
@@ -39,7 +39,7 @@ function addNewItem(event)
    {
    		alert("Text can not be empty! Please input text");
    }
-   else if (attribution_input.value =="")
+   else if (location_input.value =="")
    {
    		alert("Author can not be empty! Please input author");
    	}
@@ -67,9 +67,9 @@ function addNewItem(event)
 		newDivContent.appendChild(newText);
 
 		var newAttr = document.createElement('p');
-		newAttr.classList.add('item-attribution');	
+		newAttr.classList.add('item-location');	
 		var newAttrLink = document.createElement('a');
-		newAttrText = document.createTextNode(attribution_input.value);
+		newAttrText = document.createTextNode(location_input.value);
 		newAttrLink.href = '#';
 		newAttrLink.appendChild(newAttrText);
 		newAttr.appendChild(newAttrLink);
@@ -78,7 +78,7 @@ function addNewItem(event)
 		newItem.appendChild(newDivContent);
    		console.log("The new itemer was submmited");
    		text_input.value = "";
-  		attribution_input.value = "";
+  		location_input.value = "";
    		modal_backdrop.style.display="none";
   		create_item_modal.style.display="none";
 
