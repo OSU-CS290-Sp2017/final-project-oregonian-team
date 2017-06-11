@@ -1,7 +1,9 @@
 body {
   font-family: Roboto, Helvetica, sans-serif;
   margin: 0;
-  background-color: #eee;
+  background-image:url("corvallis.jpg");
+  background-color:#ffe6ff;
+
 }
 
 a {
@@ -13,8 +15,8 @@ a {
   padding: 10px 20px;
   font-size: 30px;
   font-weight: 100;
-  background-color: #319df6;
-  color: #fff;
+  background-color:#80dfff;
+  color:#ccffe6;
 }
 
 .navbar {
@@ -121,7 +123,7 @@ a:focus {
   margin: 0;
 }
 
-.item-content .item-attribution {
+.item-content .item-location {
   margin-top: 8px;
   text-align: right;
   font-weight: bold;
