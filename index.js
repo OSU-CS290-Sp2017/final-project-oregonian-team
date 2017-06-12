@@ -1,3 +1,4 @@
+
 var modal_backdrop = document.getElementById('modal-backdrop');
 //var modal_backdrop = document.getElementsByClassName('hidden');???
 var create_item_modal = document.getElementById('create-item-modal');
@@ -19,7 +20,7 @@ close_itemer.addEventListener('click', function () {
   location_input.value = "";
   console.log("The input was cleared since closed");
   modal_backdrop.style.display="none";
-  create_item__modal.style.display="none";
+  create_item_modal.style.display="none";
   console.log("And create-itemer window was closed");
 });
 
@@ -29,7 +30,7 @@ cancel_itemer.addEventListener('click', function () {
   location_input.value = "";
   console.log("The input was cleared since canceled");
   modal_backdrop.style.display="none";
-  create_item__modal.style.display="none";
+  create_item_modal.style.display="none";
   console.log("And create-itemer window was closed");
 });
 
