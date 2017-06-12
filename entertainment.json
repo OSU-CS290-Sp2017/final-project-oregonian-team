@@ -63,7 +63,7 @@ Groups can embark on leisurely half-day sojourns that provide a quick riverside 
 
   "golf-club": {
     "name": "Oak Hills Golf Club",
-    "description": "It's said that golf can take a lifetime to master, but just about every shot takes only milliseconds. ",
+    "description": "It's said that golf can take a lifetime to master, but just about every shot takes only milliseconds. In fact, the actual collision between club and ball lasts only around 450 millionths of a second, and it’s here where the biggest action of a golf swing takes place. In a desirable outcome, two things happen as the center of the clubface strikes the ball: first, the club’s momentum transfers to the ball; second, the impact causes the flexible ball to compress, adding extra velocity as the ball springs back into shape. The more compression, the farther the ball will travel. With lofted clubs such as the 6-iron, the clubface strikes the ball on a downward trajectory, scooping out a divot of turf in the meantime. This creates even morecompression by pushing the ball into the dirt before it leaves the ground. Before launching skyward, the ball scoots up the lofted plane of the clubface, rubbing against the grooves to create backspin that will help it maintain its trajectory and fight through any wind resistance or asteroid fields. If the club is angled at impact, i.e., not facing square to the target, it will cut across the ball, creating sidespin and resulting in either a hook or a slice. .",
     "location": "https://www.google.com/maps/place/1919+Recreation+Ln,+Sutherlin,+OR+97479/@43.389107,-123.3470137,17z/data=!3m1!4b1!4m5!3m4!1s0x54c41d6c3eda2767:0xb6f7ee7c062d472f!8m2!3d43.389107!4d-123.344825",
     "photos": ["entertainment-pics/golfClub.png"]
   }
