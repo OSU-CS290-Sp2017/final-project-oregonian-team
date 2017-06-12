@@ -12,6 +12,7 @@ a {
 .navlink a {
   color: black;
 }
+
 main a{
   color:black;
 } 
@@ -19,7 +20,8 @@ main a{
 .site-title a {
   /*color:#6cd46c;*/
   color:#88d288
- } 
+ }
+
 a:hover,
 a:focus {
   color:#6cd46c;
@@ -31,26 +33,25 @@ a:focus {
 
 .navitem.site-title {
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px 80px;
   font-size: 30px;
   font-weight: 100;
   color:#6cd46c;
   display: inline-block;
   line-height: 38px;
-
 }
 
 .navbar {
  /* background-color: #fff;*/
   font-size: 18px;
   line-height: 22px;
-
 }
 
 .navlist {
   margin: 0 0 0 20px;
-  padding: 0px 130px 0px 130px;
+/*  padding: 0px 130px 0px 130px;*/
   background-color: #ffffff;
+  max-width: 1200px;
 }
 
 .navitem {
@@ -100,7 +101,6 @@ a:focus {
   width: 200px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
-
 }
 
 /* When the input field gets focus, change its width to 100% */
@@ -136,17 +136,20 @@ a:focus {
   margin: 50px 10%;
   display: flex;
   flex-wrap: wrap;
+  alignment:center;
+
 }
 
 .item {
-  flex: 0 1 28%;
+  flex: 1 3 28%;
   display: flex;
   flex-wrap: wrap;
-  margin: 2px;
-  padding: 20px;
+  margin: 10px;
+  padding: 10px;
   border: 1px solid #dadada;
   border-radius: 2px;
   background-color: #fff;
+  max-width: 300px;
 }
 
 .item-icon {
@@ -156,23 +159,19 @@ a:focus {
 
 .item-content {
   flex: 1 1 80%;
-  margin-left: 10px;
+  padding: 5px;
+  max-width:300px;
 }
 
-.item-content p {
- /* margin: 0;*/
-// position:relative;
-
-}
 .item-name a {
    font-weight: bold;
 }
 
-.item-content .item-location {
-  margin-top: 8px;
-  text-align: right;
+.item-more a {
   font-weight: bold;
-  padding-bottom: 5px;
+}
+.item-more{
+  text-align: right;
 }
 
 #create-item-button {
