@@ -8,26 +8,33 @@ body {
 a {
   text-decoration: none;
 }
-a {
-  color: #343434;
-}
 
+.navlink a {
+  color: black;
+}
+main a{
+  color:black;
+} 
+
+.site-title a {
+  /*color:#6cd46c;*/
+  color:#88d288
+ } 
 a:hover,
 a:focus {
-  color: #319df6;
+  color:#6cd46c;
 }
 
 a:focus {
   outline: none;
 }
 
-.site-title {
+.navitem.site-title {
   margin: 0;
   padding: 10px 20px;
   font-size: 30px;
   font-weight: 100;
-  color:#00b300;
-  font-style: bold;
+  color:#6cd46c;
   display: inline-block;
   line-height: 38px;
 
@@ -37,11 +44,12 @@ a:focus {
  /* background-color: #fff;*/
   font-size: 18px;
   line-height: 22px;
+
 }
 
 .navlist {
   margin: 0 0 0 20px;
-  padding: 0;
+  padding: 0px 130px 0px 130px;
   background-color: #ffffff;
 }
 
@@ -68,9 +76,7 @@ a:focus {
 }*/
 .navbar-search-container{
   display:flex;
-/*  flex-wrap: wrap;*/
   font-size: 18px;
-/*  line-height: 100px;*/
   background-image:url("pic/CorvallisPanoRiverView.jpg");
   background-repeat: no-repeat;
   background-position: center;
@@ -99,7 +105,7 @@ a:focus {
 
 /* When the input field gets focus, change its width to 100% */
 #navbar-search-input:focus {
-    width: 40%;
+    width: 50%;
 }
 
 
@@ -135,6 +141,7 @@ a:focus {
 .item {
   flex: 0 1 28%;
   display: flex;
+  flex-wrap: wrap;
   margin: 2px;
   padding: 20px;
   border: 1px solid #dadada;
@@ -143,7 +150,8 @@ a:focus {
 }
 
 .item-icon {
-  font-size: 24px;
+  font-size: 20px;
+  padding-top: 15px;
 }
 
 .item-content {
@@ -152,13 +160,19 @@ a:focus {
 }
 
 .item-content p {
-  margin: 0;
+ /* margin: 0;*/
+ position:relative;
+
+}
+.item-name a {
+   font-weight: bold;
 }
 
 .item-content .item-location {
   margin-top: 8px;
   text-align: right;
   font-weight: bold;
+  padding-bottom: 5px;
 }
 
 #create-item-button {
