@@ -79,7 +79,7 @@ a:focus {
 .navbar-search-container{
   display:flex;
   font-size: 18px;
-  background-image:url("images/CorvallisPanoRiverView.jpg");
+  background-image:url("image/CorvallisPanoRiverView.jpg");
   background-repeat: no-repeat;
   background-position: center;
  background-size: cover;
