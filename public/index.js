@@ -37,13 +37,14 @@ function clearItemInputValues() {
 
 }
 
-function generateNewItemElem(itenName, itemDescription, itemLocation, itemPhoto) {
+function generateNewItemElem(itenName, itemDescription, itemLocation, itemLocationName, itemPhoto) {
 
   var itemTemplate = Handlebars.templates.item;
   var itemData = {
     name: itenName,
     description: itemDescription,
     location: itemLocation,
+    locationName: itemLocationName,
     photos: itemPhoto
   };
 
@@ -55,19 +56,21 @@ function insertNewItem() {
 
   var itemName = document.getElementById('item-name-input').value;
   var itemLocation = document.getElementById('item-location-input').value;
+  var itemLocationName = document.getElementById('item-locationName-input').value;
   var itemDescription = document.getElementById('item-name-input').value;
-  var itemPhoto = document.getElementById('item-photo-input').value;
+  var itemPhoto = document.getElementById('item-photo-input').src;
 
-  if (itemName && itemLocation && itemDescription && itemPhoto) {
+  if (itemName && itemLocation && itemLocationName && itemDescription && itemPhoto) {
 
-      var newItemElem = generateNewItemElem(itemName, itemLocation, itemDescription, itemPhoto);
+      var newItemElem = generateNewItemElem(itemName,itemLocation,itemLocationName,itemDescription,itemPhoto);
       var itemContainer = document.querySelector('.item-container');
       itemContainer.insertAdjacentHTML('beforeend', newItemElem);
       allItemElems.push(newItemElem);
 
       closeCreateItemModal();
-
-  } else {
+  } 
+  
+  else {
 
     alert('You must specify both the name, the location, the photo and the description of the item!');
 
