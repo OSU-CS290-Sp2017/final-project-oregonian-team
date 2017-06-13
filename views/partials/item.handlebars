@@ -1,6 +1,8 @@
 <article class="item">
         <div class="image-container">
-          <img class="image" src="{{photos}}" width="280" height = "200">
+          {{#each photos}}
+             {{>itemPhoto}}
+          {{/each}}
         </div>
 
         <div class="item-content">
