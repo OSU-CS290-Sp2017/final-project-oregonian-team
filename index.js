@@ -56,7 +56,7 @@ function insertNewItem() {
   var itemName = document.getElementById('twit-name-input').value;
   var itemLocation = document.getElementById('twit-location-input').value;
   var itemDescription = document.getElementById('twit-name-input').value;
-  var itemPhoto = document.getElementById('twit-photo-input').value;
+  var itemPhoto = document.getElementById('twit-photo-input').src;
   /*
    * Only generate the new twit if the user supplied values for both the twit
    * text and the twit attribution.  Give them an alert if they didn't.
