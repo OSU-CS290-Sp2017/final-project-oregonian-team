@@ -176,6 +176,14 @@ a:focus {
   width: 100%;
 }
 
+.item-description-container{
+  display: flex;
+  overflow: auto;
+  max-height: 200px;
+  max-width: 1000px;
+
+}
+
 .item-icon {
   font-size: 20px;
   padding-top: 15px;
@@ -190,7 +198,7 @@ a:focus {
 }
 
 .image {
-  flex: 1 1 1;
+ flex: 1 1 1;
   padding: 5px;
   /*max-width:300px;*/
   width: 80%;
@@ -200,19 +208,12 @@ a:focus {
 .item-content {
   flex: 1 1 1;
   padding: 5px;
-  /*max-width:300px;*/
+  max-width:1000px;
   width: 45%;
 }
 
-.item-name a {
+.item-name {
    font-weight: bold;
-}
-
-.item-more a {
-  font-weight: bold;
-}
-.item-more{
-  text-align: right;
 }
 
 #create-item-button {
