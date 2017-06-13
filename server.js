@@ -15,6 +15,10 @@ app.set('view engine', 'handlebars');
 
 app.use(bodyParser.json());
 
+app.get('/home', function(req, res, next) {
+	res.render('home');
+});
+
 // serve dynamic content (based on .json)
 app.get('/entertainment', function(req, res, next) {
 	var templateArgs = {
@@ -28,7 +32,7 @@ app.get('/entertainment', function(req, res, next) {
 app.get('/sightseeing', function(req, res, next) {
 	var templateArgs = {
 		items: sightseeingData,
-		title: "sightseeing"
+		title: "Sightseeing"
 	};
 	res.render('categoryPage', templateArgs);
 });
@@ -94,12 +98,15 @@ app.use(express.static('public'));
 
 // safety net for all other url requests
 app.get('*', function(req, res) {
-	res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+	var templateArgs = {
+		title: "Life"
+	};
+	res.status(404).render('404Page',templateArgs);
 });
-
 
 // listen on the intended port
 app.listen(port, function() {
+
 	console.log("==Server listening  on port", port);
 });
 
