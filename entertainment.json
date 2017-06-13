@@ -8,41 +8,28 @@
 
   "get-air": {
     "name": "Get Air",
-    "description": "Get Air Indoor Trampolines parks offers wall-to-wall trampolines, dunk lanes, long tumbling tracks, and an extreme trampoline dodgeball court. Get Air brings the backyard trampoline experience indoors—and then takes it to the next level. Individually sewn trampolines cover thousands of square feet on the main court, sitting flat or at an angle to the wall. Visitors have ample room to bounce through the air or flinging themselves into foam pits, all while cameras record and replay spectacular landings on flat screens.
- In addition to the open-jump areas, Get Air includes separate sections for trampoline dodgeball games and gravity-defying slam dunks on padded basketball hoops. Elsewhere, a slackline and a wobbly rope ladder challenge balance skills. Get Air even features a separate play area for small children, who safely bounce under the watchful eyes of Get Air Lifeguards. Get Air offers more than just trampolines, like the ninja obstacle course, similar to the training courses on the popular TV show 'American Ninja Warrior'.",
+    "description": "Get Air Indoor Trampolines parks offers wall-to-wall trampolines, dunk lanes, long tumbling tracks, and an extreme trampoline dodgeball court. Get Air brings the backyard trampoline experience indoors—and then takes it to the next level. Individually sewn trampolines cover thousands of square feet on the main court, sitting flat or at an angle to the wall. Visitors have ample room to bounce through the air or flinging themselves into foam pits, all while cameras record and replay spectacular landings on flat screens. In addition to the open-jump areas, Get Air includes separate sections for trampoline dodgeball games and gravity-defying slam dunks on padded basketball hoops. Elsewhere, a slackline and a wobbly rope ladder challenge balance skills. Get Air even features a separate play area for small children, who safely bounce under the watchful eyes of Get Air Lifeguards. Get Air offers more than just trampolines, like the ninja obstacle course, similar to the training courses on the popular TV show 'American Ninja Warrior'.",
     "location": "https://www.google.com/maps/place/3910+Rickey+St+SE,+Salem,+OR+97317/@44.9146998,-122.9848184,17z/data=!3m1!4b1!4m5!3m4!1s0x54bff8da3f4771f5:0x2f7d28b90213e771!8m2!3d44.9146998!4d-122.9826297",
     "photos": ["entertainment-pics/getAir.png"]
   },
 
   "gun-club": {
     "name": "Gun Club",
-    "description": "Albany Gun Club has called the Willamette Valley home since the 1930s, when it was founded by a group of devoted trap-shooting fans. The club moved to its current in 1961 and continues to provide visitors of all experience levels with trap-shooting practice, games, and special events.
-Traps and Facilities
-• Five trap fields, each with a voice-operated trap
-• Shoot anywhere from 16 to 27 yards out
-• Coin machines activate all traps, with each round equal to 25 clay birds
-• RV accommodations (no hookups)
-Shotgun Sports
-• Fields host shooting practice and formal competitions
-• Beginner and intermediate shooting games available upon request
-• Games for advanced shooters include Flurry and various versions of Annie Oakley
-",
+    "description": "Albany Gun Club has called the Willamette Valley home since the 1930s, when it was founded by a group of devoted trap-shooting fans. The club moved to its current in 1961 and continues to provide visitors of all experience levels with trap-shooting practice, games, and special events.Traps and Facilities• Five trap fields, each with a voice-operated trap• Shoot anywhere from 16 to 27 yards out• Coin machines activate all traps, with each round equal to 25 clay birds• RV accommodations (no hookups)Shotgun Sports• Fields host shooting practice and formal competitions• Beginner and intermediate shooting games available upon request• Games for advanced shooters include Flurry and various versions of Annie Oakley",
     "location": "https://www.google.com/maps/place/35305+Hwy+20+SE,+Albany,+OR+97322/@44.6296429,-122.9897952,17z/data=!3m1!4b1!4m5!3m4!1s0x54c06d9eb5130269:0xf48ce96b2123f48!8m2!3d44.6296429!4d-122.9876065",
     "photos": ["entertainment-pics/gunClub.png"]
   },
 
   "horseback": {
     "name": "Horseback-Riding",
-    "description": "In 1870, James and Charlotte Peery purchased 80 acres of land along Crabtree Creek and created a homestead for their family. Little did they know that, over the years, this homestead would pass down through five generations.
-Today, Century Farm Equestrian Center stands on the same land the Peerys bought nearly 150 years ago. Horseback riding is the name of the game here, with lessons available for beginners as well as seasoned veterans. Western riding lessons take place in an enclosed arena and on trails that wind through the property. Students can also spend time bonding and exchanging email addresses with the horses at summer camp.",
+    "description": "In 1870, James and Charlotte Peery purchased 80 acres of land along Crabtree Creek and created a homestead for their family. Little did they know that, over the years, this homestead would pass down through five generations. Today, Century Farm Equestrian Center stands on the same land the Peerys bought nearly 150 years ago. Horseback riding is the name of the game here, with lessons available for beginners as well as seasoned veterans. Western riding lessons take place in an enclosed arena and on trails that wind through the property. Students can also spend time bonding and exchanging email addresses with the horses at summer camp.",
     "location": "https://www.google.com/maps/place/40835+Oupor+Dr,+Scio,+OR+97374/@44.649361,-122.7725447,17z/data=!3m1!4b1!4m5!3m4!1s0x54c07689de2115ad:0xea206efbd4e6e6bf!8m2!3d44.649361!4d-122.770356",
     "photos": ["entertainment-pics/hoursebackRide.png"]
   },
 
   "rafting": {
     "name": "Rafting",
-    "description": "In the shadow of the Deschutes River’s towering buttes and sheer rock faces, High Desert River Outfitters’ rafts soar over swirling rapids. The outfitter’s river guides have been navigating this river since 1990 and have mastered its most challenging rapids and eddies. In addition to firsthand experience, all guides boasts extensive training in swift-water safety and rescue, as well as certifications in first aid and CPR. They welcome adventurers of all ages, carefully tailoring trips to suit skill levels.
-Groups can embark on leisurely half-day sojourns that provide a quick riverside glimpse of the surrounding landscape. Additionally, on any trips that last a day or longer, guides prepare barbecue lunches for all their guests to provide them with the energy necessary to control the rafts and physically remove any stowaway mountain goats.",
+    "description": "In the shadow of the Deschutes River’s towering buttes and sheer rock faces, High Desert River Outfitters’ rafts soar over swirling rapids. The outfitter’s river guides have been navigating this river since 1990 and have mastered its most challenging rapids and eddies. In addition to firsthand experience, all guides boasts extensive training in swift-water safety and rescue, as well as certifications in first aid and CPR. They welcome adventurers of all ages, carefully tailoring trips to suit skill levels. Groups can embark on leisurely half-day sojourns that provide a quick riverside glimpse of the surrounding landscape. Additionally, on any trips that last a day or longer, guides prepare barbecue lunches for all their guests to provide them with the energy necessary to control the rafts and physically remove any stowaway mountain goats.",
     "location": "https://www.google.com/maps/place/206+Elrod+Ave,+Maupin,+OR+97037/@45.1748052,-121.0782442,17z/data=!3m1!4b1!4m5!3m4!1s0x54bdd8bc8dafb447:0x62b31734e2fae92f!8m2!3d45.1748052!4d-121.0760555",
     "photos": ["entertainment-pics/rafting.png"]
   },
