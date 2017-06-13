@@ -1,164 +1,134 @@
+var allItemElems = [];
 
-var modal_backdrop = document.getElementById('modal-backdrop');
-//var modal_backdrop = document.getElementsByClassName('hidden');???
-var create_item_modal = document.getElementById('create-item-modal');
-var name_input = document.getElementById('item-name-input');
-var description_input = document.getElementById('item-description-input');
-var location_input = document.getElementById('item-location-input');
-var image_url = document.getElementById('item-image-input');
-var image_input = image_url.src;
+function showCreateItemModal() {
 
-var item_container = document.querySelector('.item-container');
-var item = document.querySelectorAll('.item');
+  var modalBackdrop = document.getElementById('modal-backdrop');
+  var createItemModal = document.getElementById('create-item-modal');
 
-var create_itemer = document.querySelector('#create-item-button');
-create_itemer.addEventListener('click', function () {
-  modal_backdrop.style.display="block";
-  create_item_modal.style.display="block";
-  console.log("The create-item button was clicked");
-});
-
-var close_itemer = document.querySelector('.modal-close-button');
-close_itemer.addEventListener('click', function () {
-   		image_url.value = "";
-   		name_input.value = "";
-  		location_input.value = "";
-  		description_input.value = "";
-  console.log("The input was cleared since closed");
-  modal_backdrop.style.display="none";
-  create_item_modal.style.display="none";
-  console.log("And create-itemer window was closed");
-});
-
-var cancel_itemer = document.querySelector('.modal-cancel-button');
-cancel_itemer.addEventListener('click', function () {
-   		image_url.value = "";
-   		name_input.value = "";
-  		location_input.value = "";
-  		description_input.value = "";
-  console.log("The input was cleared since canceled");
-  modal_backdrop.style.display="none";
-  create_item_modal.style.display="none";
-  console.log("And create-itemer window was closed");
-});
-
-function addNewItem(event)
-{
-   if( name_input.value == "")
-   {
-   		alert("Name can not be empty! Please input name");
-   }
-   else if (description_input.value == "")
-   {
-   		alert("Description can not be empty! Please input description");
-   }
-   else if (location_input.value =="")
-   {
-   		alert("Location can not be empty! Please input location");
-   }
-   else if (image_input.value == "")
-   {
-   		alert("Image can not be empty! Please input Image URL")
-   }
-   else	
-   {	
-		var newItem = document.createElement('article');
-		newItem.classList.add('item');
-		item_container.appendChild(newItem);
-
-		var newDivImage =  document.createElement('div');
-		newDivImage.classList.add('image-container');
-		var divImage = document.createElement('img');
-		divImage.classList.add(image_input);
-		newDivIcon.appendChild(divImage);
-		newItem.appendChild(newDivImage);
-	
-		var newDivContent = document.createElement('div');
-		newDivContent.classList.add('item-content');
-		
-		var newName = document.createElement('p');
-		newName.classList.add('item-name');
-		newName_text = document.createTextNode(name_input.value);
-		newName.appendChild(newName_text);
-		newDivContent.appendChild(newName);
-
-	    var newLocation = document.createElement('p');
-		newLocation.classList.add('item-location');
-		newLocation_text = document.createTextNode(location_input.value);
-		newLocation.appendChild(newLocation_text);
-		newDivContent.appendChild(newLocation);
-
-	    var newDescription = document.createElement('p');
-		newDescription.classList.add('item-description');
-		newDescription_text = document.createTextNode(descrption_input.value);
-		newDescription.appendChild(newDescription_text);
-		newDivContent.appendChild(newDescription);
-		
-		newItem.appendChild(newDivContent);
-   		console.log("The new itemer was submmited");   		
-   		image_url.value = "";
-   		name_input.value = "";
-  		location_input.value = "";
-  		description_input.value = "";
-   		modal_backdrop.style.display="none";
-  		create_item_modal.style.display="none";
-
- 		item = document.querySelectorAll('.item');
- 		oldChild=item;
-   	} 
-}
-
-var accept_itemer = document.querySelector('.modal-accept-button');
-accept_itemer.addEventListener('click', addNewItem);
-var oldChild=item;
-
-function handleSearch(){
-	item=oldChild;
-	console.log("Begin to Search");
-	console.log("Current item are", item);
-	if(search_input.value != "")
-	{	
-		for (var i =0; i < item.length; i++)
-		{
-
-			var currentItemContent = item[i].querySelector('.item-content');
-			var currentItemText = currentItemContent.querySelector('.item-text');
-			var currentItemAttr = currentItemContent.querySelector('.item-attribution');	
-
-			var search_input_text = search_input.value.toLowerCase();
-			var current_item_text = currentItem.textContent.toLowerCase();
-			var current_item_attr = currentItemAttr.textContent.toLowerCase();
-			
-			if( !(current_item_text.includes(search_input_text))&& 
-				!(current_item_attr.includes(search_input_text)) )
-			{
-				item[i].remove();
-			}
-			else 
-			{
-			    item_container.appendChild(item[i]);
-			}
-	    }
-	    console.log("Finish Al Search");
-	}
-	else 
-	{
-		for (var i =0; i < item.length; i++)
-		{
-			item[i].remove();
-		}
-		console.log("Delete All");
-		for (var i =0; i < oldChild.length; i++)
-		{
-			item_container.appendChild(oldChild[i]);
-		}
-		console.log("Return to orginal web");
-	}
+  // Show the modal and its backdrop.
+  modalBackdrop.classList.remove('hidden');
+  createItemModal.classList.remove('hidden');
 
 }
 
-var search_input = document.getElementById('navbar-search-input');
-search_input.addEventListener('input', handleSearch);
+function closeCreateItemModal() {
 
-var search_button = document.getElementById('navbar-search-button');
-search_button.addEventListener('click', handleSearch);
+  var modalBackdrop = document.getElementById('modal-backdrop');
+  var createItemModal = document.getElementById('create-item-modal');
+
+  // Hide the modal and its backdrop.
+  modalBackdrop.classList.add('hidden');
+  createItemModal.classList.add('hidden');
+
+  clearItemInputValues();
+
+}
+
+/*
+ * This function clears any value present in any of the twit input elements.
+ */
+function clearItemInputValues() {
+
+  var itemInputElems = document.getElementsByClassName('item-input-element');
+  for (var i = 0; i < itemInputElems.length; i++) {
+    var input = itemInputElems[i].querySelector('input, textarea');
+    input.value = '';
+  }
+
+}
+
+function generateNewItemElem(itemText, itemAuthor) {
+
+  var itemTemplate = Handlebars.templates.item;
+  var itemData = {
+    name: itenName,
+    description: itemDescription,
+    location: itemLocation,
+    photos: itemPhoto
+  };
+
+  return itemTemplate(itemData);
+
+}
+
+function insertNewItem() {
+
+  var itemName = document.getElementById('twit-name-input').value;
+  var itemLocation = document.getElementById('twit-location-input').value;
+  var itemDescription = document.getElementById('twit-name-input').value;
+  var itemPhoto = document.getElementById('twit-photo-input').value;
+  /*
+   * Only generate the new twit if the user supplied values for both the twit
+   * text and the twit attribution.  Give them an alert if they didn't.
+   */
+  if (itemName && itemLocation && itemDescription && itemPhoto) {
+
+      var newItemElem = generateNewItemElem(itemName, itemLocation, itemDescription, itemPhoto);
+      var itemContainer = document.querySelector('.item-container');
+      itemContainer.insertAdjacentHTML('beforeend', newItemElem);
+      allItemElems.push(newItemElem);
+
+      closeCreateItemModal();
+
+  } else {
+
+    alert('You must specify both the name, the location, the photo and the description of the item!');
+
+  }
+}
+
+function doItemSearch() {
+
+  // Grab the search query, make sure it's not null, and do some preproessing.
+  var searchQuery = document.getElementById('navbar-search-input').value;
+  searchQuery = searchQuery ? searchQuery.trim().toLowerCase() : '';
+
+  // Remove all twits from the twit container temporarily.
+  var itemContainer = document.querySelector('.item-container');
+  while (itemContainer.lastChild) {
+    itemContainer.removeChild(itemContainer.lastChild);
+  }
+
+  /*
+   * Loop through the collection of all twits and add twits back into the DOM
+   * if they contain the search term or if the search term is empty.
+   */
+  allItemElems.forEach(function (itemElem) {
+    if (!searchQuery || itemElem.textContent.toLowerCase().indexOf(searchQuery) !== -1) {
+      itemContainer.appendChild(itemElem);
+    }
+  });
+
+}
+
+
+/*
+ * Wait until the DOM content is loaded, and then hook up UI interactions, etc.
+ */
+window.addEventListener('DOMContentLoaded', function () {
+
+  // Remember all of the existing twits in an array that we can use for search.
+  var itemElemsCollection = document.getElementsByClassName('item');
+  for (var i = 0; i < itemElemsCollection.length; i++) {
+    allItemElems.push(itemElemsCollection[i]);
+  }
+
+  var createItemButton = document.getElementById('create-item-button');
+  createItemButton.addEventListener('click', showCreateItemModal);
+
+  var modalCloseButton = document.querySelector('#create-item-modal .modal-close-button');
+  modalCloseButton.addEventListener('click', closeCreateItemModal);
+
+  var modalCancalButton = document.querySelector('#create-item-modal .modal-cancel-button');
+  modalCancalButton.addEventListener('click', closeCreateItemModal);
+
+  var modalAcceptButton = document.querySelector('#create-itemt-modal .modal-accept-button');
+  modalAcceptButton.addEventListener('click', insertNewItem);
+
+  var searchButton = document.getElementById('navbar-search-button');
+  searchButton.addEventListener('click', doItemSearch);
+
+  var searchInput = document.getElementById('navbar-search-input');
+  searchInput.addEventListener('input', doItemSearch);
+
+});
