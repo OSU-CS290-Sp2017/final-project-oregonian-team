@@ -17,89 +17,94 @@ app.use(bodyParser.json());
 
 // serve dynamic content (based on .json)
 app.get('/entertainment', function(req, res, next) {
-	var templateArgs = {
-		items: entertainmentData,
-		title: "Entertainment"
-	};
-	res.render('categoryPage', templateArgs);
+    var templateArgs = {
+        items: entertainmentData,
+        title: "Entertainment"
+    };
+    res.render('categoryPage', templateArgs);
 });
 
 
 app.get('/sightseeing', function(req, res, next) {
-	var templateArgs = {
-		items: sightseeingData,
-		title: "sightseeing"
-	};
-	res.render('categoryPage', templateArgs);
+    var templateArgs = {
+        items: sightseeingData,
+        title: "sightseeing"
+    };
+    res.render('categoryPage', templateArgs);
 });
 
 
 // app.get('/pic', function(req, res, next) {
-// 	res.send(pic);
+//  res.send(pic);
 // });
 
 
 // app.get('/people/:person', function(req, res, next) {
-// 	console.log("== url params for request", req.params);
-// 	var person = req.params.person;
-// 	var personData = peopleData[person];
-// 	console.log("personData", personData);
+//  console.log("== url params for request", req.params);
+//  var person = req.params.person;
+//  var personData = peopleData[person];
+//  console.log("personData", personData);
 
-// 	if (personData) {
-// 		templateArgs = {
-// 			name: personData.name,
-// 			photos: personData.photos,
-// 			title: personData.name
-// 		};
-// 		res.render('photosPage', templateArgs);
-// 	}
-// 	else {
-// 		next();
-// 	}
+//  if (personData) {
+//      templateArgs = {
+//          name: personData.name,
+//          photos: personData.photos,
+//          title: personData.name
+//      };
+//      res.render('photosPage', templateArgs);
+//  }
+//  else {
+//      next();
+//  }
 // });
 
 
-// app.post('/people/:person/addPhoto', function(req, res, next) {
-// 	var person = peopleData[req.params.person];
+app.post('/:category/addItem', function(req, res, next) {
+    if (req.params.category === "entertainment") {
+        category = entertainmentData;
+    } else if (req.params.category === "sightseeing") {
+        category = sightseeingData;
+    } else {
+        res.status(400).send("Post request to the wrong URL");
+    }
 
-// 	if (person) {
-// 		console.log(person)
-// 		if(req.body &&  req.body.url) {
-// 			var photo = {
-// 				url: req.body.url,
-// 				caption: req.body.caption
-// 			};
-// 			person.photos = person.photos || [];
-// 			person.photos.push(photo);
-// 			fs.writeFile('peopleData.json', JSON.stringify(peopleData, null, 2), function(err) {
-// 				if (err) {
-// 					res.status(500).send("Unable to save photo to \"database\"");
-// 				} else {
-// 					res.status(200).send();
-// 				}
-// 			});
-// 		} else {
-// 			res.status(400).send("Person must have a URL");
-// 		}
-// 	} else {
-// 		next();
-// 	} 
-// });
+    if(req.body) {
+        var item = {
+            name: req.body.name,
+            description: req.body.description,
+            location: req.body.location,
+            photos: req.body.photos
+        };
+
+        itemKey = item.name;
+        category[itemKey] = item; 
+        fs.writeFile(req.params.category + '.json', JSON.stringify(category, null, 2), function(err) {
+            if (err) {
+                res.status(500).send("Unable to save the new item to \"database\"");
+            } else {
+                console.log("Server success");
+                res.status(200).send();
+            }
+        });
+    } else {
+        res.status(400).send("Client error, must send complete item information to server!");
+    }
+    
+});
 
 
 // serve static content (off /public)
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // safety net for all other url requests
 app.get('*', function(req, res) {
-	res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
+    res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
 
 // listen on the intended port
 app.listen(port, function() {
-	console.log("==Server listening  on port", port);
+    console.log("==Server listening  on port", port);
 });
 
