@@ -1,164 +1,168 @@
-/*
- * This function displays the modal for adding a photo to a user page.
- */
-function displayAddPhotoModal() {
+var allTwitElems = [];
 
-  var backdropElem = document.getElementById('modal-backdrop');
-  var addPhotoModalElem = document.getElementById('create-item-modal');
+/*
+ * This function shows the modal to create a twit when the "create twit"
+ * button is clicked.
+ */
+function showCreateTwitModal() {
+
+  var modalBackdrop = document.getElementById('modal-backdrop');
+  var createTwitModal = document.getElementById('create-twit-modal');
 
   // Show the modal and its backdrop.
-  backdropElem.classList.remove('hidden');
-  addPhotoModalElem.classList.remove('hidden');
+  modalBackdrop.classList.remove('hidden');
+  createTwitModal.classList.remove('hidden');
 
 }
 
-
 /*
- * This function closes the modal for adding a photo to a user page, clearing
- * the values in its input elements.
+ * This function hides the modal to create a twit and clears any existing
+ * values from the input fields whenever any of the modal close actions are
+ * taken.
  */
-function closeAddPhotoModal() {
+function closeCreateTwitModal() {
 
-  var backdropElem = document.getElementById('modal-backdrop');
-  var addPhotoModalElem = document.getElementById('create-item-modal');
+  var modalBackdrop = document.getElementById('modal-backdrop');
+  var createTwitModal = document.getElementById('create-twit-modal');
 
   // Hide the modal and its backdrop.
-  backdropElem.classList.add('hidden');
-  addPhotoModalElem.classList.add('hidden');
+  modalBackdrop.classList.add('hidden');
+  createTwitModal.classList.add('hidden');
 
-  clearPhotoInputValues();
+  clearTwitInputValues();
 
 }
 
-
 /*
- * This function clears the values of all input elements in the photo modal.
+ * This function clears any value present in any of the twit input elements.
  */
-function clearPhotoInputValues() {
+function clearTwitInputValues() {
 
-  var inputElems = document.getElementsByClassName('item-input-element');
-  for (var i = 0; i < inputElems.length; i++) {
-    var input = inputElems[i].querySelector('input, textarea');
+  var twitInputElems = document.getElementsByClassName('twit-input-element');
+  for (var i = 0; i < twitInputElems.length; i++) {
+    var input = twitInputElems[i].querySelector('input, textarea');
     input.value = '';
   }
 
 }
 
-
 /*
- * Small function to get a person's identifier from the current URL.
+ * Create and return a new HTML element representing a single twit, given the
+ * twit text and twit attribution as arguments.  The twit element has the
+ * following structure:
+ *
+ * <article class="twit">
+ *   <div class="twit-icon">
+ *     <i class="fa fa-bullhorn"></i>
+ *   </div>
+ *   <div class="twit-content">
+ *     <p class="twit-text">
+ *       {{twitText}}
+ *     </p>
+ *     <p class="twit-attribution">
+ *       <a href="#">{{twitAttribution}}</a>
+ *     </p>
+ *   </div>
+ * </article>
  */
-function getCategoryFromPage() {
-  var pathComponents = window.location.pathname.split('/');
-  return pathComponents[1];
+function generateNewTwitElem(twitText, twitAuthor) {
+
+  var twitTemplate = Handlebars.templates.twit;
+  var twitData = {
+    text: twitText,
+    author: twitAuthor
+  };
+
+  return twitTemplate(twitData);
+
 }
 
-
 /*
- * This function uses Handlebars on the client side to generate HTML for a
- * person photo and adds that person photo HTML into the DOM.
+ * This function takes user input values from the "create twit" modal,
+ * generates a new twit using them, and inserts that twit into the document.
  */
-function insertNewPhoto() {
+function insertNewTwit() {
 
-  var itemName = document.getElementById('item-name-input').value || '';
-  var itemDescription = document.getElementById('item-description-input').value || '';
-  var itemLocationName = document.getElementById('item-locationName-input').value || '';
-  var itemImage = document.getElementById('item-image-input').value || '';
+  var twitText = document.getElementById('twit-text-input').value;
+  var twitAttribution = document.getElementById('twit-attribution-input').value;
 
-  if (itemName.trim() && itemDescription.trim() && itemLocationName.trim() && itemImage.trim()) {
+  /*
+   * Only generate the new twit if the user supplied values for both the twit
+   * text and the twit attribution.  Give them an alert if they didn't.
+   */
+  if (twitText && twitAttribution) {
 
-    var category = getCategoryFromPage();
+      var newTwitElem = generateNewTwitElem(twitText, twitAttribution);
+      var twitContainer = document.querySelector('.twit-container');
+      twitContainer.insertAdjacentHTML('beforeend', newTwitElem);
+      allTwitElems.push(newTwitElem);
 
-    if (category) {
-      // shows up in client's console, not server's!
-      console.log("== category:", category);
-      storeCategoryItem(category, itemName, itemDescription, itemLocationName, itemImage, function (err) {
-        if (err) {
-          alert("Unable to save the new item to the category. Got this error:\n\n" + err);
-        } else {
-          var itemTemplate = Handlebars.templates.item;
-          var itemPhotoTemplate = Handlebars.templates.itemPhoto;
-
-          var itemTemplateArgs = {
-            name: itemName,
-            description: itemDescription,
-            location: "#",
-            locationName: itemLocationName,
-            photos: [itemImage]
-          };
-
-          console.log("hoo")
-          var itemHTML = itemTemplate(itemTemplateArgs);
-          console.log("hey")
-          // console.log(photoCardHTML);
-          var itemContainer = document.querySelector('.item-container');
-          itemContainer.insertAdjacentHTML('beforeend', itemHTML);
-        }
-      });
-
-    }
-
-    closeAddPhotoModal();
+      closeCreateTwitModal();
 
   } else {
 
-    alert('You must specify a value for each of the fields.');
+    alert('You must specify both the text and the author of the twit!');
 
   }
+}
+
+/*
+ * Perform a search over over all the twits based on the search query the user
+ * entered in the navbar.  Only display twits that match the search query.
+ * Display all twits if the search query is empty.
+ */
+function doTwitSearch() {
+
+  // Grab the search query, make sure it's not null, and do some preproessing.
+  var searchQuery = document.getElementById('navbar-search-input').value;
+  searchQuery = searchQuery ? searchQuery.trim().toLowerCase() : '';
+
+  // Remove all twits from the twit container temporarily.
+  var twitContainer = document.querySelector('.twit-container');
+  while (twitContainer.lastChild) {
+    twitContainer.removeChild(twitContainer.lastChild);
+  }
+
+  /*
+   * Loop through the collection of all twits and add twits back into the DOM
+   * if they contain the search term or if the search term is empty.
+   */
+  allTwitElems.forEach(function (twitElem) {
+    if (!searchQuery || twitElem.textContent.toLowerCase().indexOf(searchQuery) !== -1) {
+      twitContainer.appendChild(twitElem);
+    }
+  });
 
 }
 
 
 /*
- * This function will communicate with our server to store the specified
- * photo for a given person.
+ * Wait until the DOM content is loaded, and then hook up UI interactions, etc.
  */
-function storeCategoryItem(category, name, description, locationName, image, callback) {
-  var postURL = "/" + category + "/addItem";
-  var postRequest = new XMLHttpRequest();
-  postRequest.open('POST', postURL);
-  postRequest.setRequestHeader('Content-type', 'application/json');
+window.addEventListener('DOMContentqLoaded', function () {
 
-  postRequest.addEventListener('load', function(event) {
-    var error;
-    if (event.target.status !== 200) {
-      error = event.target.response;
-    }
-    callback(error);
-  });
-
-  var postBody = {
-    name: name,
-    description: description,
-    location: "#",
-    locationName: locationName,
-    photos: [image]
-  };
-  postRequest.send(JSON.stringify(postBody));
-}
-
-
-// Wait until the DOM content is loaded to hook up UI interactions, etc.
-window.addEventListener('DOMContentLoaded', function (event) {
-
-  var addPhotoButton = document.getElementById('create-item-button');
-  if (addPhotoButton) {
-    addPhotoButton.addEventListener('click', displayAddPhotoModal);
+  // Remember all of the existing twits in an array that we can use for search.
+  var twitElemsCollection = document.getElementsByClassName('twit');
+  for (var i = 0; i < twitElemsCollection.length; i++) {
+    allTwitElems.push(twitElemsCollection[i]);
   }
 
-  var modalCloseButton = document.querySelector('#create-item-modal .modal-close-button');
-  if (modalCloseButton) {
-    modalCloseButton.addEventListener('click', closeAddPhotoModal);
-  }
+  var createTwitButton = document.getElementById('create-twit-button');
+  createTwitButton.addEventListener('click', showCreateTwitModal);
 
-  var modalCancalButton = document.querySelector('#create-item-modal .modal-cancel-button');
-  if (modalCancalButton) {
-    modalCancalButton.addEventListener('click', closeAddPhotoModal);
-  }
+  var modalCloseButton = document.querySelector('#create-twit-modal .modal-close-button');
+  modalCloseButton.addEventListener('click', closeCreateTwitModal);
 
-  var modalAcceptButton = document.querySelector('#create-item-modal .modal-accept-button');
-  if (modalAcceptButton) {
-    modalAcceptButton.addEventListener('click', insertNewPhoto);
-  }
+  var modalCancalButton = document.querySelector('#create-twit-modal .modal-cancel-button');
+  modalCancalButton.addEventListener('click', closeCreateTwitModal);
+
+  var modalAcceptButton = document.querySelector('#create-twit-modal .modal-accept-button');
+  modalAcceptButton.addEventListener('click', insertNewTwit);
+
+  var searchButton = document.getElementById('navbar-search-button');
+  searchButton.addEventListener('click', doTwitSearch);
+
+  var searchInput = document.getElementById('navbar-search-input');
+  searchInput.addEventListener('input', doTwitSearch);
 
 });
