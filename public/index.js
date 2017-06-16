@@ -145,7 +145,7 @@ function storeCategoryItem(category, name, description, locationName, image, cal
 }
 
 
-function doTwitSearch() {
+function doSearch() {
 
   // Grab the search query, make sure it's not null, and do some preproessing.
   var searchQuery = document.getElementById('navbar-search-input').value;
@@ -220,12 +220,12 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
   var modalSearchButton = document.getElementById('navbar-search-button');
   if (modalSearchButton) {
-    modalSearchButton.addEventListener('click', doTwitSearch);
+    modalSearchButton.addEventListener('click', doSearch);
   }
 
   var modalSearchInput = document.getElementById('navbar-search-input');
   if (modalSearchInput) {
-    modalSearchInput.addEventListener('input', doTwitSearch);
+    modalSearchInput.addEventListener('input', doSearch);
   }
 
 });
