@@ -94,6 +94,12 @@ function insertNewPhoto() {
           // console.log(photoCardHTML);
           var itemContainer = document.querySelector('.item-container');
           itemContainer.insertAdjacentHTML('beforeend', itemHTML);
+          var itemContainer = document.querySelector('.item-container');
+
+          var itemElemsCollection = document.getElementsByClassName('item');
+          for (var i = 0; i < itemElemsCollection.length; i++) {
+               allItemElems.push(itemElemsCollection[i]);
+  }
         }
       });
 
