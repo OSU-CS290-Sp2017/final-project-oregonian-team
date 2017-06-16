@@ -37,6 +37,12 @@ app.get('/sightseeing', function(req, res, next) {
 	res.render('categoryPage', templateArgs);
 });
 
+app.get('/plan', function(req, res, next) {
+        var templateArgs = {
+                title: "Plan"
+        };
+        res.render('categoryPage', templateArgs);
+});
 
 
 app.post('/:category/addItem', function(req, res, next) {
