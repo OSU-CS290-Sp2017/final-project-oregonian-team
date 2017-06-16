@@ -77,7 +77,6 @@ function insertNewPhoto() {
           alert("Unable to save the new item to the category. Got this error:\n\n" + err);
         } else {
           var itemTemplate = Handlebars.templates.item;
-          var itemPhotoTemplate = Handlebars.templates.itemPhoto;
 
           var itemTemplateArgs = {
             name: itemName,
