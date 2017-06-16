@@ -96,10 +96,6 @@ function insertNewPhoto() {
           itemContainer.insertAdjacentHTML('beforeend', itemHTML);
           var itemContainer = document.querySelector('.item-container');
 
-          var itemElemsCollection = document.getElementsByClassName('item');
-          for (var i = 0; i < itemElemsCollection.length; i++) {
-               allItemElems.push(itemElemsCollection[i]);
-  }
         }
       });
 
@@ -216,6 +212,10 @@ window.addEventListener('DOMContentLoaded', function (event) {
   var modalAcceptButton = document.querySelector('#create-item-modal .modal-accept-button');
   if (modalAcceptButton) {
     modalAcceptButton.addEventListener('click', insertNewPhoto);
+    var itemElemsCollection = document.getElementsByClassName('item');
+    for (var i = 0; i < itemElemsCollection.length; i++) {
+        allItemElems.push(itemElemsCollection[i]);
+  }
   }
 
   var modalSearchButton = document.getElementById('navbar-search-button');
