@@ -32,7 +32,7 @@ a:focus {
 
 .navitem.site-title {
   margin: 0;
-  padding: 10px 80px;
+  padding: 10px 80px 10px 0px;
   font-size: 30px;
   font-weight: 100;
   color:#6cd46c;
@@ -98,14 +98,14 @@ a:focus {
   background-color: white;
   border: 2px solid #dadada;
   border-radius: 10px;
-  width: 200px;
+  width: 350px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
 /* When the input field gets focus, change its width to 100% */
 #navbar-search-input:focus {
-    width: 50%;
+    width: 80%;
 }
 
 
@@ -173,8 +173,9 @@ a:focus {
   /*border: 1px solid #dadada;*/
   border-radius: 2px;
   background-color: #fff;
-  /*max-width: 280px;*/
-  height: 300px;
+  min-height: : 300px;
+  max-height: 800px;
+  min-width: 1000px;
   width: 100%;
 }
 
@@ -193,7 +194,7 @@ a:focus {
 
 .image-container {
   flex: 1 1 1;
-  padding: 0px;
+  padding: 1px;
   width: 450px;
   height:300px;
   margin-right:20px;
@@ -201,7 +202,7 @@ a:focus {
 
 .image {
 /* flex: 1 1 1;*/
-  padding: 0px;
+  padding: 1px;
   /*max-width:300px;*/
 /*  width: 80%;
   height: 100%;*/
