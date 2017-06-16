@@ -83,7 +83,8 @@ a:focus {
   background-position: center;
  background-size: cover;
   height:350px;
-  justify-content: center;
+  padding-left: 215px;
+  /*justify-content: center;*/
 }  
 
 .navbar-search {
@@ -105,7 +106,7 @@ a:focus {
 
 /* When the input field gets focus, change its width to 100% */
 #navbar-search-input:focus {
-    width: 80%;
+    width: 85%;
 }
 
 
