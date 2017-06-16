@@ -1,7 +1,6 @@
 body {
   font-family: Roboto, Helvetica, sans-serif;
   margin: 0;
-  background-image:url("corvallis.jpg");
   background-color:#ffffff;
 }
 
@@ -49,7 +48,7 @@ a:focus {
 }
 
 .navlist {
-  margin: 0 0 0 10px;
+  margin: 0 0 0 4%;
 /*  padding: 0px 130px 0px 130px;*/
   background-color: #ffffff;
   max-width: 1300px;
@@ -134,7 +133,7 @@ a:focus {
 }
 
 .share-container{
-  margin: 50px 10%;
+  margin: 50px 25%;
   display: flex;
   flex-wrap: wrap;
   align-items: :center;
@@ -153,7 +152,8 @@ a:focus {
 }
 
 .item-container {
-  margin: 50px 5%;
+  margin-left:4%;
+  margin: 50px 8%;
   display: flex;
   flex-wrap: wrap;
   align-items: :center;
@@ -192,17 +192,19 @@ a:focus {
 .image-container {
   flex: 1 1 1;
   padding: 5px;
-  /*max-width:300px;*/
-  width: 50%;
-  height: 100%
+  width: 580px;
+  height:350px;
+  margin-right:20px;
 }
 
 .image {
- flex: 1 1 1;
+/* flex: 1 1 1;*/
   padding: 5px;
   /*max-width:300px;*/
-  width: 80%;
-  height: 100%;
+/*  width: 80%;
+  height: 100%;*/
+  width: 580px;
+  height:350px
 }
 
 .item-content {
