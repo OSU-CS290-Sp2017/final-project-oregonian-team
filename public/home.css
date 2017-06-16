@@ -1,5 +1,5 @@
 body {
-  background-image: url(images/background-photo.jpg);
+  background-image: url(image/background-photo.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -9,6 +9,6 @@ body {
 
 @media only screen and (max-width: 767px) {
   body {
-    background-image: url(images/background-photo-mobile-devices.jpg);
+    background-image: url(image/background-photo-mobile-devices.jpg);
   }
 	}
