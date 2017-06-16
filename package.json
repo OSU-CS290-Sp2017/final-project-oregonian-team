@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "handlebars views/partials/item.handlebars -f public/itemTemplate.js && handlebars views/partials/itemPhoto.handlebars -p -f public/itemPhotoTemplate.js",
+    "prestart": "npm run build",
     "start": "node server.js"
   },
   "repository": {

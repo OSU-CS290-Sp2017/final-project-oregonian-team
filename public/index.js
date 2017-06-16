@@ -1,134 +1,164 @@
-var allItemElems = [];
+/*
+ * This function displays the modal for adding a photo to a user page.
+ */
+function displayAddPhotoModal() {
 
-function showCreateItemModal() {
-
-  var modalBackdrop = document.getElementById('modal-backdrop');
-  var createItemModal = document.getElementById('create-item-modal');
+  var backdropElem = document.getElementById('modal-backdrop');
+  var addPhotoModalElem = document.getElementById('create-item-modal');
 
   // Show the modal and its backdrop.
-  modalBackdrop.classList.remove('hidden');
-  createItemModal.classList.remove('hidden');
+  backdropElem.classList.remove('hidden');
+  addPhotoModalElem.classList.remove('hidden');
 
 }
 
-function closeCreateItemModal() {
-
-  var modalBackdrop = document.getElementById('modal-backdrop');
-  var createItemModal = document.getElementById('create-item-modal');
-
-  // Hide the modal and its backdrop.
-  modalBackdrop.classList.add('hidden');
-  createItemModal.classList.add('hidden');
-
-  clearItemInputValues();
-
-}
 
 /*
- * This function clears any value present in any of the twit input elements.
+ * This function closes the modal for adding a photo to a user page, clearing
+ * the values in its input elements.
  */
-function clearItemInputValues() {
+function closeAddPhotoModal() {
 
-  var itemInputElems = document.getElementsByClassName('item-input-element');
-  for (var i = 0; i < itemInputElems.length; i++) {
-    var input = itemInputElems[i].querySelector('input, textarea');
+  var backdropElem = document.getElementById('modal-backdrop');
+  var addPhotoModalElem = document.getElementById('create-item-modal');
+
+  // Hide the modal and its backdrop.
+  backdropElem.classList.add('hidden');
+  addPhotoModalElem.classList.add('hidden');
+
+  clearPhotoInputValues();
+
+}
+
+
+/*
+ * This function clears the values of all input elements in the photo modal.
+ */
+function clearPhotoInputValues() {
+
+  var inputElems = document.getElementsByClassName('item-input-element');
+  for (var i = 0; i < inputElems.length; i++) {
+    var input = inputElems[i].querySelector('input, textarea');
     input.value = '';
   }
 
 }
 
-function generateNewItemElem(itenName, itemDescription, itemLocation, itemLocationName, itemPhoto) {
 
-  var itemTemplate = Handlebars.templates.item;
-  var itemData = {
-    name: itenName,
-    description: itemDescription,
-    location: itemLocation,
-    locationName: itemLocationName,
-    photos: itemPhoto
-  };
-
-  return itemTemplate(itemData);
-
+/*
+ * Small function to get a person's identifier from the current URL.
+ */
+function getCategoryFromPage() {
+  var pathComponents = window.location.pathname.split('/');
+  return pathComponents[1];
 }
 
-function insertNewItem() {
 
-  var itemName = document.getElementById('item-name-input').value;
-  var itemLocation = document.getElementById('item-location-input').value;
-  var itemLocationName = document.getElementById('item-locationName-input').value;
-  var itemDescription = document.getElementById('item-name-input').value;
-  var itemPhoto = document.getElementById('item-photo-input').src;
+/*
+ * This function uses Handlebars on the client side to generate HTML for a
+ * person photo and adds that person photo HTML into the DOM.
+ */
+function insertNewPhoto() {
 
-  if (itemName && itemLocation && itemLocationName && itemDescription && itemPhoto) {
+  var itemName = document.getElementById('item-name-input').value || '';
+  var itemDescription = document.getElementById('item-description-input').value || '';
+  var itemLocationName = document.getElementById('item-locationName-input').value || '';
+  var itemImage = document.getElementById('item-image-input').value || '';
 
-      var newItemElem = generateNewItemElem(itemName,itemLocation,itemLocationName,itemDescription,itemPhoto);
-      var itemContainer = document.querySelector('.item-container');
-      itemContainer.insertAdjacentHTML('beforeend', newItemElem);
-      allItemElems.push(newItemElem);
+  if (itemName.trim() && itemDescription.trim() && itemLocationName.trim() && itemImage.trim()) {
 
-      closeCreateItemModal();
-  } 
-  
-  else {
+    var category = getCategoryFromPage();
 
-    alert('You must specify both the name, the location, the photo and the description of the item!');
+    if (category) {
+      // shows up in client's console, not server's!
+      console.log("== category:", category);
+      storeCategoryItem(category, itemName, itemDescription, itemLocationName, itemImage, function (err) {
+        if (err) {
+          alert("Unable to save the new item to the category. Got this error:\n\n" + err);
+        } else {
+          var itemTemplate = Handlebars.templates.item;
+          var itemPhotoTemplate = Handlebars.templates.itemPhoto;
 
-  }
-}
+          var itemTemplateArgs = {
+            name: itemName,
+            description: itemDescription,
+            location: "#",
+            locationName: itemLocationName,
+            photos: [itemImage]
+          };
 
-function doItemSearch() {
+          console.log("hoo")
+          var itemHTML = itemTemplate(itemTemplateArgs);
+          console.log("hey")
+          // console.log(photoCardHTML);
+          var itemContainer = document.querySelector('.item-container');
+          itemContainer.insertAdjacentHTML('beforeend', itemHTML);
+        }
+      });
 
-  // Grab the search query, make sure it's not null, and do some preproessing.
-  var searchQuery = document.getElementById('navbar-search-input').value;
-  searchQuery = searchQuery ? searchQuery.trim().toLowerCase() : '';
-
-  // Remove all twits from the twit container temporarily.
-  var itemContainer = document.querySelector('.item-container');
-  while (itemContainer.lastChild) {
-    itemContainer.removeChild(itemContainer.lastChild);
-  }
-
-  /*
-   * Loop through the collection of all twits and add twits back into the DOM
-   * if they contain the search term or if the search term is empty.
-   */
-  allItemElems.forEach(function (itemElem) {
-    if (!searchQuery || itemElem.textContent.toLowerCase().indexOf(searchQuery) !== -1) {
-      itemContainer.appendChild(itemElem);
     }
-  });
+
+    closeAddPhotoModal();
+
+  } else {
+
+    alert('You must specify a value for each of the fields.');
+
+  }
 
 }
 
 
 /*
- * Wait until the DOM content is loaded, and then hook up UI interactions, etc.
+ * This function will communicate with our server to store the specified
+ * photo for a given person.
  */
-window.addEventListener('DOMContentLoaded', function () {
+function storeCategoryItem(category, name, description, locationName, image, callback) {
+  var postURL = "/" + category + "/addItem";
+  var postRequest = new XMLHttpRequest();
+  postRequest.open('POST', postURL);
+  postRequest.setRequestHeader('Content-type', 'application/json');
 
-  // Remember all of the existing twits in an array that we can use for search.
-  var itemElemsCollection = document.getElementsByClassName('item');
-  for (var i = 0; i < itemElemsCollection.length; i++) {
-    allItemElems.push(itemElemsCollection[i]);
+  postRequest.addEventListener('load', function(event) {
+    var error;
+    if (event.target.status !== 200) {
+      error = event.target.response;
+    }
+    callback(error);
+  });
+
+  var postBody = {
+    name: name,
+    description: description,
+    location: "#",
+    locationName: locationName,
+    photos: [image]
+  };
+  postRequest.send(JSON.stringify(postBody));
+}
+
+
+// Wait until the DOM content is loaded to hook up UI interactions, etc.
+window.addEventListener('DOMContentLoaded', function (event) {
+
+  var addPhotoButton = document.getElementById('create-item-button');
+  if (addPhotoButton) {
+    addPhotoButton.addEventListener('click', displayAddPhotoModal);
   }
 
-  var createItemButton = document.getElementById('create-item-button');
-  createItemButton.addEventListener('click', showCreateItemModal);
-
   var modalCloseButton = document.querySelector('#create-item-modal .modal-close-button');
-  modalCloseButton.addEventListener('click', closeCreateItemModal);
+  if (modalCloseButton) {
+    modalCloseButton.addEventListener('click', closeAddPhotoModal);
+  }
 
   var modalCancalButton = document.querySelector('#create-item-modal .modal-cancel-button');
-  modalCancalButton.addEventListener('click', closeCreateItemModal);
+  if (modalCancalButton) {
+    modalCancalButton.addEventListener('click', closeAddPhotoModal);
+  }
 
-  var modalAcceptButton = document.querySelector('#create-itemt-modal .modal-accept-button');
-  modalAcceptButton.addEventListener('click', insertNewItem);
-
-  var searchButton = document.getElementById('navbar-search-button');
-  searchButton.addEventListener('click', doItemSearch);
-
-  var searchInput = document.getElementById('navbar-search-input');
-  searchInput.addEventListener('input', doItemSearch);
+  var modalAcceptButton = document.querySelector('#create-item-modal .modal-accept-button');
+  if (modalAcceptButton) {
+    modalAcceptButton.addEventListener('click', insertNewPhoto);
+  }
 
 });
